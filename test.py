@@ -44,7 +44,7 @@ else:
 
 # Define the API endpoint URL
 # Get specific card ID
-api_url = 'https://us.api.blizzard.com/hearthstone/metadata/sets'
+api_url = 'https://us.api.blizzard.com/hearthstone/metadata/set'
 
 # Set up headers with the Authorization Bearer token
 headers = {
@@ -53,8 +53,8 @@ headers = {
 
 # Set up query parameters for the API endpoint
 params = {
-    'locale': 'en-us',
-    'setGroup': 'standard'
+    'locale': 'en-us'
+    # 'setGroups': 'standard'
 }
 
 # Make the GET request to the API endpoint
@@ -63,14 +63,14 @@ response = requests.get(api_url, headers=headers, params=params)
 # Check if the request was successful (status code 200)
 if response.status_code == 200:
     # Parse and display the response data
-    token_data = response.json()
-    # arr_data = json.loads(token_data)
-    # print("Token Data For Sets:")
-    # print(token_data)
-    standard_sets = token_data
-    print("Current Standard Sets:")
-    for set_info in standard_sets:
-        print(f"- {set_info['name']} ({set_info['id']})")
+    sets_data = response.json()
+    if 'sets' in sets_data:
+        standard_sets = [set_info for set_info in sets_data['sets'] if set_info.get('setGroup') == 'Standard']
+        print("Current Standard Sets:")
+        for set_info in standard_sets:
+            print(f"- {set_info['name']} ({set_info['id']})")
+    else:
+        print("No sets found in the response.")
 else:
     print(f"Failed to retrieve token data. Status code: {response.status_code}")
     print(f"Response content: {response.text}")
