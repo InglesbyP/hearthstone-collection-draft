@@ -39,7 +39,3 @@ if response.status_code == 200:
 else:
     print(f"Failed to retrieve token data. Status code: {response.status_code}")
     print(f"Response content: {response.text}")
-    
-print("#####################")
-# print(arr_data)
-# print(token_data["id"])
