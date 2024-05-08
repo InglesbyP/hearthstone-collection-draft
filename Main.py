@@ -35,3 +35,13 @@ while True:
         print(f"{selected_class} not in {random_selection_classes}")
 
 ### Build Deck
+deck_card_ids = []
+# print(updated_owned_df)
+print(standard_sets)
+class_specific_df = updated_owned_df[(updated_owned_df['cardClass'] == selected_class.upper()) | (updated_owned_df['cardClass'] == 'NEUTRAL')].copy()
+print(class_specific_df)
+# class_specific_df.to_csv('Output/test.csv')
+
+# print(class_standard_df) 
+# while len(deck_card_ids) < 30:
+#     print()
