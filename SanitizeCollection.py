@@ -10,7 +10,6 @@ def sanitize_collection():
 def get_all_cards():
     with open('cards.collectible.json', 'r', encoding="utf8") as file:
         all_cards_data = json.load(file)
-        # print(all_cards_data[0])
     return all_cards_data
 
 def update_collection(all_cards_data, owned_df):
@@ -30,9 +29,3 @@ def update_collection(all_cards_data, owned_df):
     owned_df.reset_index(inplace=True)
     
     return owned_df
-
-
-owned_df = sanitize_collection()
-all_cards_data = get_all_cards()
-updated_df = update_collection(all_cards_data, owned_df)
-print(updated_df)
