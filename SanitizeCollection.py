@@ -29,3 +29,4 @@ def update_collection(all_cards_data, owned_df):
     owned_df.reset_index(inplace=True)
     
     return owned_df
+
