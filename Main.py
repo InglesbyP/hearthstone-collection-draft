@@ -36,11 +36,23 @@ while True:
 ### Organize Cards from collection by standard + class
 class_specific_df = updated_owned_df[(updated_owned_df['cardClass'] == selected_class.upper()) | (updated_owned_df['cardClass'] == 'NEUTRAL')].copy()
 class_specific_standard_df = class_specific_df[(class_specific_df['Id'].isin(standard_cards_id_list))].copy()
-print(class_specific_standard_df)
+# print(class_specific_standard_df)
 
 ### Build Deck
 deck_card_ids = []
+deck_card_names = []
 
-# while len(deck_card_ids) < 30:
-random_cards_selected = class_specific_standard_df.sample(3)
-print(random_cards_selected)
+while len(deck_card_names) < 30:
+    random_cards_selected = class_specific_standard_df.sample(3)
+    random_cards_names = random_cards_selected['Name'].tolist()
+    print(random_cards_names)
+    while True:
+        card = input("Please choose a card. \n")
+        
+        if card in random_cards_names:
+            print(f"You Chose {card}")
+            deck_card_names.append(card)
+            break
+        else:
+            print("Invalid input. Please choose an available class.")
+            print(f"{card} not in {random_cards_names}")
