@@ -4,6 +4,7 @@ from SanitizeCollection import sanitize_collection, update_collection, get_all_c
 from GetStandardSets import getAccessToken, get_standard_sets, get_standard_set_ids
 from Collection import build_standard_cardset
 from CardImage import getCardImages
+from GUItest import create
 
 ### Access Token
 access_token = getAccessToken()
@@ -38,7 +39,7 @@ while True:
 ### Organize Cards from collection by standard + class
 class_specific_df = updated_owned_df[(updated_owned_df['cardClass'] == selected_class.upper()) | (updated_owned_df['cardClass'] == 'NEUTRAL')].copy()
 class_specific_standard_df = class_specific_df[(class_specific_df['Id'].isin(standard_cards_id_list))].copy()
-print(class_specific_standard_df)
+# print(class_specific_standard_df)
 
 ### Build Deck
 deck_card_ids = []
@@ -56,6 +57,7 @@ while len(deck_card_names) < 30:
         random_card_ids.append(card_dict["id"])
 
     images = getCardImages(random_card_ids)
+    create(images)
     
     while True:
         card = input("Please choose a card. \n")
