@@ -68,7 +68,7 @@ def build_standard_cardset(access_token):
         print(f"Response content: {response.text}")
         
     
-    ## request 2
+    ## request 3
     params = {
         'locale': 'en-us',
         'set': 'standard',
