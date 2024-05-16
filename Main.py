@@ -58,14 +58,11 @@ while len(deck_card_names) < 30:
         random_card_ids.append(card_dict["id"])
 
     images = getCardImages(random_card_ids)
-    # test = create(images)
-    # clicked = gui.get_clicked()
     
     root = tk.Tk()
     test = gui.MyApplication(root, images=images)
     test.run()
     clicked = test.get_clicked()
-    # gui.create(images)
     
     
     print(random_cards_names[clicked])
