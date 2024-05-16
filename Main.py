@@ -65,7 +65,7 @@ while len(deck_card_names) < 30:
     test = gui.MyApplication(root, images=images)
     test.run()
     clicked = test.get_clicked()
-    gui.create(images)
+    # gui.create(images)
     
     
     print(random_cards_names[clicked])
