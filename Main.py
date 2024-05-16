@@ -4,7 +4,8 @@ from SanitizeCollection import sanitize_collection, update_collection, get_all_c
 from GetStandardSets import getAccessToken, get_standard_sets, get_standard_set_ids
 from Collection import build_standard_cardset
 from CardImage import getCardImages
-from GUItest import create
+# from GUItest import create
+import GUItest as gui
 
 ### Access Token
 access_token = getAccessToken()
@@ -57,15 +58,26 @@ while len(deck_card_names) < 30:
         random_card_ids.append(card_dict["id"])
 
     images = getCardImages(random_card_ids)
-    create(images)
+    # test = create(images)
+    # clicked = gui.get_clicked()
+    
+    root = tk.Tk()
+    test = gui.MyApplication(root, images=images)
+    test.run()
+    clicked = test.get_clicked()
+    gui.create(images)
+    
+    
+    print(random_cards_names[clicked])
     
     while True:
-        card = input("Please choose a card. \n")
+        card = random_cards_names[clicked]
         
         if card in random_cards_names:
             print(f"You Chose {card}")
             deck_card_names.append(card)
             break
         else:
-            print("Invalid input. Please choose an available class.")
             print(f"{card} not in {random_cards_names}")
+    
+    test.destroy()
