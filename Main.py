@@ -80,4 +80,4 @@ while len(deck_card_names) < 30:
         else:
             print(f"{card} not in {random_cards_names}")
     
-    test.destroy()
+    # test.destroy()
