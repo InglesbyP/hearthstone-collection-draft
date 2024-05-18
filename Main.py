@@ -63,13 +63,18 @@ while len(deck_card_names) < 30:
         card_dict = next(item for item in all_cards if item["name"] == card)
         random_card_ids.append(card_dict["id"])
 
+    ### Validate Selected Cards
+    #Check Current count in deck_card_names
+    #Compare to highest value between 'Normal count' and 'Golden count' cols in df
+    #If current count == highest value ; resample selection 
+
+
     images = getCardImages(random_card_ids)
     
     root = tk.Tk()
     test = gui.MyApplication(root, images=images)
     test.run()
     clicked = test.get_clicked()
-    
     
     print(random_cards_names[clicked])
     
