@@ -2,6 +2,7 @@ import random
 import tkinter as tk
 from SanitizeCollection import sanitize_collection, update_collection, get_all_cards
 from GetStandardSets import getAccessToken, get_standard_sets, get_standard_set_ids
+from AssignWeightings import assign_weights
 from Collection import build_standard_cardset
 from CardImage import getCardImages
 # from GUItest import create
@@ -40,7 +41,12 @@ while True:
 ### Organize Cards from collection by standard + class
 class_specific_df = updated_owned_df[(updated_owned_df['cardClass'] == selected_class.upper()) | (updated_owned_df['cardClass'] == 'NEUTRAL')].copy()
 class_specific_standard_df = class_specific_df[(class_specific_df['Id'].isin(standard_cards_id_list))].copy()
-# print(class_specific_standard_df)
+
+
+### Get Card Weightings
+class_specific_standard_df_weighted = assign_weights(class_specific_standard_df)
+
+print(class_specific_standard_df_weighted)
 
 ### Build Deck
 deck_card_ids = []
@@ -50,7 +56,7 @@ deck_card_names = []
 
 while len(deck_card_names) < 30:
     random_card_ids = []
-    random_cards_selected = class_specific_standard_df.sample(3)
+    random_cards_selected = class_specific_standard_df.sample(n=3, weights='weights')
     random_cards_names = random_cards_selected['Name'].tolist()
     print(random_cards_names)
     for card in random_cards_names:
@@ -78,3 +84,7 @@ while len(deck_card_names) < 30:
             print(f"{card} not in {random_cards_names}")
     
     # test.destroy()
+
+# print(deck_card_names)
+for card in deck_card_names:
+    print(card)
