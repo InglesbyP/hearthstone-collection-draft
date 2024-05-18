@@ -46,7 +46,7 @@ class_specific_standard_df = class_specific_df[(class_specific_df['Id'].isin(sta
 ### Get Card Weightings
 class_specific_standard_df_weighted = assign_weights(class_specific_standard_df)
 
-print(class_specific_standard_df_weighted)
+# print(class_specific_standard_df_weighted)
 
 ### Build Deck
 deck_card_ids = []
